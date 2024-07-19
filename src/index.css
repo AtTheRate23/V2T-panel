@@ -6,8 +6,9 @@
 .app-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 80px;
+  width: 100%;
   border-radius: 5px;
   min-height: 100vh;
   /* Ensure it covers the full height of the viewport */
@@ -19,12 +20,21 @@ h1 {
   margin-bottom: 20px;
   color: white;
   font-size: 50px;
+
+  /* media query for display less than 425px */
+  @media (max-width: 425px) {
+    margin-left: 20px;
+  }
 }
 
 p {
   margin-bottom: 20px;
   color: #d3c0c0;
   font-size: 22px;
+
+  @media (max-width: 425px) {
+    margin: 20px;
+  }
 }
 
 button {
@@ -50,7 +60,7 @@ button:disabled {
 .inner-content {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 95%;
   padding: 20px;
   background: white;
   border-radius: 5px;
