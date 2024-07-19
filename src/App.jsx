@@ -38,12 +38,22 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <h1>Voice to Text Converter</h1>
-      <input type="file" accept="audio/*" onChange={handleFileChange} />
-      <button onClick={handleButtonClick} disabled={loading}>
-        {loading ? 'Converting...' : 'Convert into Text'}
-      </button>
-      <textarea value={transcript} readOnly />
+      <h1>Speech to Text Converter</h1>
+      <p>Upload an audio file to convert it into text.</p>
+      <div className="inner-content">
+        <div className="input-btn-container">
+          <div className="selectFile">
+            <label>Select a file:</label>
+            <input type="file" accept="audio/*" onChange={handleFileChange} />
+          </div>
+          <div className="btnContainer">
+            <button onClick={handleButtonClick} disabled={loading}>
+              {loading ? 'Converting...' : 'Convert into Text'}
+            </button>
+          </div>
+        </div>
+        <textarea value={transcript} readOnly />
+      </div>
     </div>
   );
 };
