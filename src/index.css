@@ -31,12 +31,12 @@ button {
   margin-bottom: 10px;
   padding: 10px 20px;
   font-size: 20px;
-  background-color: #5dcaeb;
+  background-color: #3a8aa5;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
   border: none;
   outline: none;
-  color: black;
+  color: #eae2e2;
   border-radius: 5px;
   font-family: 'Times New Roman', Times, serif;
   font-weight: 40;
