@@ -20,7 +20,7 @@ const App = () => {
     formData.append('audio', file);
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/transcribe', {
+      const response = await fetch('https://voice-to-text-kf7y.onrender.com/transcribe', {
         method: 'POST',
         body: formData,
       });
