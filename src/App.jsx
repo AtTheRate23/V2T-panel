@@ -4,7 +4,7 @@ const App = () => {
   const [file, setFile] = useState(null);
   const [transcript, setTranscript] = useState('');
   const [loading, setLoading] = useState(false);
-  const [language, setLanguage] = useState("")
+  const [language, setLanguage] = useState("hi-IN")
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
