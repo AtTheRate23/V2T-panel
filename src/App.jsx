@@ -4,9 +4,14 @@ const App = () => {
   const [file, setFile] = useState(null);
   const [transcript, setTranscript] = useState('');
   const [loading, setLoading] = useState(false);
+  const [language, setLanguage] = useState("")
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
+  };
+
+  const handleLanguageChange = (event) => {
+    setLanguage(event.target.value);
   };
 
   const handleButtonClick = async () => {
@@ -14,10 +19,15 @@ const App = () => {
       alert('Please select a file first.');
       return;
     }
+    if (!['hi-IN', 'en-US'].includes(language)) {
+      alert('Please select a supported language.');
+      return;
+    }
     setLoading(true);
 
     const formData = new FormData();
     formData.append('audio', file);
+    formData.append('language', language);
 
     try {
       const response = await fetch('https://voice-to-text-kf7y.onrender.com/transcribe', {
@@ -36,6 +46,15 @@ const App = () => {
     }
   };
 
+  const handleSpeakClick = () => {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(transcript);
+      window.speechSynthesis.speak(utterance);
+    } else {
+      alert('Sorry, your browser does not support speech synthesis.');
+    }
+  };
+
   return (
     <div className="app-container">
       <h1>Speech to Text Converter</h1>
@@ -46,11 +65,21 @@ const App = () => {
             <label>Select a file:</label>
             <input type="file" accept="audio/*" onChange={handleFileChange} />
           </div>
+          <div className="selectLanguage">
+            <label>Select language of Audio file:</label>
+            <select value={language} onChange={handleLanguageChange}>
+              <option value="hi-IN">Hindi</option>
+              <option value="en-US">English</option>
+            </select>
+          </div>
           <div className="btnContainer">
             <button onClick={handleButtonClick} disabled={loading}>
               {loading ? 'Converting...' : 'Convert into Text'}
             </button>
           </div>
+          <button onClick={handleSpeakClick} disabled={!transcript}>
+            Speak Text
+          </button>
         </div>
         <textarea value={transcript} readOnly />
       </div>
